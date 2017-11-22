@@ -17,6 +17,8 @@ namespace NDATA_MRP
             InitializeComponent();
         }
 
+        public static int rowDeleted = 0;
+        public static int rowAdded = 0;
         private void nhanVienBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             try
@@ -26,9 +28,18 @@ namespace NDATA_MRP
                 this.tableAdapterManager.UpdateAll(this.dsNdataMrp);
                 maNVTextBox.Enabled = false;
                 chkChangeMaNV.Checked = false;
+                rowDeleted = 0; lblMsgDel.Text = string.Empty;
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
+                /*rowAdded = rowAdded - 1;
+                if (rowAdded == 0)
+                {
+                    lblMsgAdd.Text = string.Empty;
+                }else
+                {
+                    lblMsgAdd.Text = "Thêm: " + rowAdded + "  ";
+                }*/
                 MessageBox.Show(ex.Message);
                 NdataFunc n = new NdataFunc();
                 n.write2Log(ex.Message);
@@ -42,7 +53,8 @@ namespace NDATA_MRP
             // TODO: This line of code loads data into the 'dsNdataMrp.NhanVien' table. You can move, or remove it, as needed.
             //this.nhanVienTableAdapter.Fill(this.dsNdataMrp.NhanVien);
             this.nhanVienTableAdapter.FillByStatus(this.dsNdataMrp.NhanVien,true);
-
+            lblMsgDel.Text = string.Empty;
+            lblMsgAdd.Text = string.Empty;
         }
 
         private void statusLabel_Click(object sender, EventArgs e)
@@ -77,6 +89,9 @@ namespace NDATA_MRP
             {
                 this.nhanVienTableAdapter.FillByStatus(this.dsNdataMrp.NhanVien, true);
             }
+            rowDeleted = 0;
+            lblMsgDel.Text = string.Empty;
+            lblMsgAdd.Text = string.Empty;
         }
 
         private void chkChangeMaNV_CheckedChanged(object sender, EventArgs e)
@@ -95,19 +110,23 @@ namespace NDATA_MRP
         {
             maNVTextBox.Enabled = true;
             chkChangeMaNV.Checked = true;
+            rowAdded = rowAdded+1;
+            lblMsgAdd.Text = "Thêm: " + rowAdded + "  ";
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn muốn xóa nhân viên này không?", "XÁC NHẬN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                //this.nhanVienBindingSource.RemoveCurrent();
-                this.tableAdapterManager.UpdateAll(this.dsNdataMrp);
-            }
-            else
-            {
-                cmbStatus_SelectedIndexChanged(sender, e);
-            }
+            rowDeleted = rowDeleted + 1;
+            /* if (MessageBox.Show("Bạn muốn xóa nhân viên này không?", "XÁC NHẬN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+             {
+                 //this.nhanVienBindingSource.RemoveCurrent();
+                 this.tableAdapterManager.UpdateAll(this.dsNdataMrp);
+             }
+             else
+             {
+                 cmbStatus_SelectedIndexChanged(sender, e);
+             }*/
+            lblMsgDel.Text = "Xóa: " + rowDeleted+ "  ";
         }
 
         private void frmNhanVien_FormClosing(object sender, FormClosingEventArgs e)
@@ -124,10 +143,10 @@ namespace NDATA_MRP
                     else if(msgResult == DialogResult.Cancel)
                     {
                         e.Cancel = true;
+                        MessageBox.Show(rowDeleted.ToString());
                     }
                     else
                     {
-                        
                     }
                     
                 }
@@ -135,5 +154,6 @@ namespace NDATA_MRP
             catch(Exception ex)
             { }
         }
+
     }
 }

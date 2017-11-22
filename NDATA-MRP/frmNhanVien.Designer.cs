@@ -53,7 +53,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.nhanVienBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.lblDelMsg = new System.Windows.Forms.ToolStripLabel();
             this.nhanVienDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -75,6 +74,8 @@
             this.nhanVienTableAdapter = new NDATA_MRP.dsNdataMrpTableAdapters.NhanVienTableAdapter();
             this.tableAdapterManager = new NDATA_MRP.dsNdataMrpTableAdapters.TableAdapterManager();
             this.chkChangeMaNV = new System.Windows.Forms.CheckBox();
+            this.lblMsgDel = new System.Windows.Forms.ToolStripLabel();
+            this.lblMsgAdd = new System.Windows.Forms.ToolStripLabel();
             maNVLabel = new System.Windows.Forms.Label();
             hoTenLabel = new System.Windows.Forms.Label();
             gioiTinhLabel = new System.Windows.Forms.Label();
@@ -174,7 +175,8 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.nhanVienBindingNavigatorSaveItem,
-            this.lblDelMsg});
+            this.lblMsgDel,
+            this.lblMsgAdd});
             this.nhanVienBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.nhanVienBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.nhanVienBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -303,13 +305,6 @@
             this.nhanVienBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.nhanVienBindingNavigatorSaveItem.Text = "Save Data";
             this.nhanVienBindingNavigatorSaveItem.Click += new System.EventHandler(this.nhanVienBindingNavigatorSaveItem_Click);
-            // 
-            // lblDelMsg
-            // 
-            this.lblDelMsg.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.lblDelMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblDelMsg.Name = "lblDelMsg";
-            this.lblDelMsg.Size = new System.Drawing.Size(0, 22);
             // 
             // nhanVienDataGridView
             // 
@@ -504,6 +499,24 @@
             this.chkChangeMaNV.UseVisualStyleBackColor = true;
             this.chkChangeMaNV.CheckedChanged += new System.EventHandler(this.chkChangeMaNV_CheckedChanged);
             // 
+            // lblMsgDel
+            // 
+            this.lblMsgDel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblMsgDel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMsgDel.ForeColor = System.Drawing.Color.Red;
+            this.lblMsgDel.MergeAction = System.Windows.Forms.MergeAction.Replace;
+            this.lblMsgDel.Name = "lblMsgDel";
+            this.lblMsgDel.Size = new System.Drawing.Size(30, 22);
+            this.lblMsgDel.Text = "Xóa:";
+            // 
+            // lblMsgAdd
+            // 
+            this.lblMsgAdd.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblMsgAdd.ForeColor = System.Drawing.Color.Blue;
+            this.lblMsgAdd.Name = "lblMsgAdd";
+            this.lblMsgAdd.Size = new System.Drawing.Size(41, 22);
+            this.lblMsgAdd.Text = "Thêm:";
+            // 
             // frmNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +596,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private System.Windows.Forms.ToolStripComboBox cmbStatus;
         private System.Windows.Forms.CheckBox chkChangeMaNV;
-        private System.Windows.Forms.ToolStripLabel lblDelMsg;
+        private System.Windows.Forms.ToolStripLabel lblMsgDel;
+        private System.Windows.Forms.ToolStripLabel lblMsgAdd;
     }
 }

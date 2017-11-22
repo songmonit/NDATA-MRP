@@ -118,6 +118,15 @@ namespace NDATA_MRP
             return flag;
 
         }
+        public bool checkKey(string sKey, string colName, string tableName)
+        {
+            bool flag = false;
+            string sSql = "Select count(*) from "+tableName+" where "+colName+"='"+sKey+"' ";
+            SqlConnection con = new ConnectDB().getConnection();
+
+            flag = this.checkKey(sSql, con);
+            return flag;
+        }
         public void write2Log(string logContent)
         {
             if (Program.logErr)

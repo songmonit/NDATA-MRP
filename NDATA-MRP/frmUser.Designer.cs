@@ -33,6 +33,7 @@
             System.Windows.Forms.Label lblLogin;
             System.Windows.Forms.Label lblPass;
             System.Windows.Forms.Label lblRole;
+            System.Windows.Forms.Label hoTenLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.dsNdataMrp = new NDATA_MRP.dsNdataMrp();
@@ -54,6 +55,14 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.usersBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.usersDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.cmbRole = new System.Windows.Forms.ComboBox();
@@ -62,17 +71,15 @@
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.usersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.quyenBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkPassEdit = new System.Windows.Forms.CheckBox();
+            this.nhanVienBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nhanVienTableAdapter = new NDATA_MRP.dsNdataMrpTableAdapters.NhanVienTableAdapter();
+            this.txtMaNV = new System.Windows.Forms.ComboBox();
             lblActive = new System.Windows.Forms.Label();
             lblLogin = new System.Windows.Forms.Label();
             lblPass = new System.Windows.Forms.Label();
             lblRole = new System.Windows.Forms.Label();
+            hoTenLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsNdataMrp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
@@ -83,43 +90,57 @@
             ((System.ComponentModel.ISupportInitialize)(this.dsNdataMrpBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quyenBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblActive
             // 
             lblActive.AutoSize = true;
-            lblActive.Location = new System.Drawing.Point(316, 45);
+            lblActive.Location = new System.Drawing.Point(368, 117);
+            lblActive.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblActive.Name = "lblActive";
-            lblActive.Size = new System.Drawing.Size(54, 13);
+            lblActive.Size = new System.Drawing.Size(58, 15);
             lblActive.TabIndex = 2;
             lblActive.Text = "Kích hoạt";
             // 
             // lblLogin
             // 
             lblLogin.AutoSize = true;
-            lblLogin.Location = new System.Drawing.Point(15, 45);
+            lblLogin.Location = new System.Drawing.Point(20, 55);
+            lblLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new System.Drawing.Size(55, 13);
+            lblLogin.Size = new System.Drawing.Size(61, 15);
             lblLogin.TabIndex = 4;
             lblLogin.Text = "Tài khoản";
             // 
             // lblPass
             // 
             lblPass.AutoSize = true;
-            lblPass.Location = new System.Drawing.Point(15, 77);
+            lblPass.Location = new System.Drawing.Point(23, 89);
+            lblPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPass.Name = "lblPass";
-            lblPass.Size = new System.Drawing.Size(52, 13);
+            lblPass.Size = new System.Drawing.Size(58, 15);
             lblPass.TabIndex = 6;
             lblPass.Text = "Mật khẩu";
             // 
             // lblRole
             // 
             lblRole.AutoSize = true;
-            lblRole.Location = new System.Drawing.Point(295, 77);
+            lblRole.Location = new System.Drawing.Point(344, 46);
+            lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblRole.Name = "lblRole";
-            lblRole.Size = new System.Drawing.Size(79, 13);
+            lblRole.Size = new System.Drawing.Size(87, 15);
             lblRole.TabIndex = 8;
             lblRole.Text = "Quyền truy cập";
+            // 
+            // hoTenLabel
+            // 
+            hoTenLabel.AutoSize = true;
+            hoTenLabel.Location = new System.Drawing.Point(369, 84);
+            hoTenLabel.Name = "hoTenLabel";
+            hoTenLabel.Size = new System.Drawing.Size(62, 15);
+            hoTenLabel.TabIndex = 11;
+            hoTenLabel.Text = "Nhân viên";
             // 
             // dgvUsers
             // 
@@ -149,6 +170,7 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.QuyenTableAdapter = this.quyenTableAdapter;
             this.tableAdapterManager.UpdateOrder = NDATA_MRP.dsNdataMrpTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UsersTableAdapter = this.usersTableAdapter;
@@ -183,7 +205,7 @@
             this.usersBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.usersBindingNavigator.Name = "usersBindingNavigator";
             this.usersBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.usersBindingNavigator.Size = new System.Drawing.Size(591, 25);
+            this.usersBindingNavigator.Size = new System.Drawing.Size(690, 25);
             this.usersBindingNavigator.TabIndex = 0;
             this.usersBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -242,7 +264,7 @@
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(57, 23);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
@@ -294,45 +316,124 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
-            this.active,
             this.dataGridViewTextBoxColumn4,
+            this.MaNV,
+            this.active,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.usersDataGridView.DataSource = this.usersBindingSource;
             this.usersDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.usersDataGridView.Location = new System.Drawing.Point(0, 145);
+            this.usersDataGridView.Location = new System.Drawing.Point(0, 159);
+            this.usersDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.usersDataGridView.Name = "usersDataGridView";
             this.usersDataGridView.ReadOnly = true;
-            this.usersDataGridView.Size = new System.Drawing.Size(591, 280);
+            this.usersDataGridView.Size = new System.Drawing.Size(690, 422);
             this.usersDataGridView.TabIndex = 1;
             this.usersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.usersDataGridView_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.MaxInputLength = 10;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "login";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tài khoản";
+            this.dataGridViewTextBoxColumn2.MaxInputLength = 100;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "pass";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Mật khẩu";
+            this.dataGridViewTextBoxColumn3.MaxInputLength = 100;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            this.dataGridViewTextBoxColumn3.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "role";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Quyền";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // MaNV
+            // 
+            this.MaNV.DataPropertyName = "MaNV";
+            this.MaNV.HeaderText = "Mã nhân viên";
+            this.MaNV.Name = "MaNV";
+            this.MaNV.ReadOnly = true;
+            this.MaNV.Width = 150;
+            // 
+            // active
+            // 
+            this.active.DataPropertyName = "active";
+            this.active.HeaderText = "Kích hoạt";
+            this.active.Name = "active";
+            this.active.ReadOnly = true;
+            this.active.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "created";
+            this.dataGridViewTextBoxColumn5.HeaderText = "created";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "modified";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Ngày sửa";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            this.dataGridViewTextBoxColumn6.Width = 150;
             // 
             // txtLogin
             // 
             this.txtLogin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "login", true));
-            this.txtLogin.Location = new System.Drawing.Point(70, 42);
+            this.txtLogin.Location = new System.Drawing.Point(93, 49);
+            this.txtLogin.Margin = new System.Windows.Forms.Padding(4);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(200, 20);
+            this.txtLogin.Size = new System.Drawing.Size(214, 21);
             this.txtLogin.TabIndex = 5;
             // 
             // txtPass
             // 
             this.txtPass.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "pass", true));
-            this.txtPass.Location = new System.Drawing.Point(70, 74);
+            this.txtPass.Enabled = false;
+            this.txtPass.Location = new System.Drawing.Point(115, 82);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(200, 20);
+            this.txtPass.Size = new System.Drawing.Size(192, 21);
             this.txtPass.TabIndex = 7;
             this.txtPass.UseSystemPasswordChar = true;
+            this.txtPass.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPass_MouseClick);
+            this.txtPass.Enter += new System.EventHandler(this.txtPass_Enter);
             // 
             // cmbRole
             // 
             this.cmbRole.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.usersBindingSource, "role", true));
             this.cmbRole.DataSource = this.quyenBindingSource;
             this.cmbRole.DisplayMember = "name";
+            this.cmbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRole.FormattingEnabled = true;
-            this.cmbRole.Location = new System.Drawing.Point(380, 74);
+            this.cmbRole.Location = new System.Drawing.Point(444, 43);
+            this.cmbRole.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRole.Name = "cmbRole";
-            this.cmbRole.Size = new System.Drawing.Size(191, 21);
+            this.cmbRole.Size = new System.Drawing.Size(222, 23);
             this.cmbRole.TabIndex = 9;
             this.cmbRole.ValueMember = "id";
             // 
@@ -349,9 +450,10 @@
             // chkActive
             // 
             this.chkActive.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.usersBindingSource, "active", true));
-            this.chkActive.Location = new System.Drawing.Point(380, 40);
+            this.chkActive.Location = new System.Drawing.Point(444, 111);
+            this.chkActive.Margin = new System.Windows.Forms.Padding(4);
             this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(104, 24);
+            this.chkActive.Size = new System.Drawing.Size(122, 28);
             this.chkActive.TabIndex = 10;
             this.chkActive.UseVisualStyleBackColor = true;
             // 
@@ -365,73 +467,47 @@
             this.quyenBindingSource1.DataMember = "Quyen";
             this.quyenBindingSource1.DataSource = this.dsNdataMrp;
             // 
-            // dataGridViewTextBoxColumn1
+            // chkPassEdit
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.MaxInputLength = 10;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
+            this.chkPassEdit.AutoSize = true;
+            this.chkPassEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPassEdit.Location = new System.Drawing.Point(93, 89);
+            this.chkPassEdit.Name = "chkPassEdit";
+            this.chkPassEdit.Size = new System.Drawing.Size(15, 14);
+            this.chkPassEdit.TabIndex = 11;
+            this.chkPassEdit.UseVisualStyleBackColor = true;
+            this.chkPassEdit.CheckedChanged += new System.EventHandler(this.chkPassEdit_CheckedChanged);
             // 
-            // dataGridViewTextBoxColumn2
+            // nhanVienBindingSource
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "login";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Tài khoản";
-            this.dataGridViewTextBoxColumn2.MaxInputLength = 100;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 150;
+            this.nhanVienBindingSource.DataMember = "NhanVien";
+            this.nhanVienBindingSource.DataSource = this.dsNdataMrp;
             // 
-            // dataGridViewTextBoxColumn3
+            // nhanVienTableAdapter
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "pass";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Mật khẩu";
-            this.dataGridViewTextBoxColumn3.MaxInputLength = 100;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 150;
+            this.nhanVienTableAdapter.ClearBeforeFill = true;
             // 
-            // active
+            // txtMaNV
             // 
-            this.active.DataPropertyName = "active";
-            this.active.HeaderText = "active";
-            this.active.Name = "active";
-            this.active.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "role";
-            this.dataGridViewTextBoxColumn4.DataSource = this.usersBindingSource;
-            this.dataGridViewTextBoxColumn4.DisplayMember = "role";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Quyền";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn4.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "created";
-            this.dataGridViewTextBoxColumn5.HeaderText = "created";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "modified";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Ngày sửa";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 150;
+            this.txtMaNV.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.usersBindingSource, "MaNV", true));
+            this.txtMaNV.DataSource = this.nhanVienBindingSource;
+            this.txtMaNV.DisplayMember = "HoTen";
+            this.txtMaNV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtMaNV.FormattingEnabled = true;
+            this.txtMaNV.Location = new System.Drawing.Point(445, 81);
+            this.txtMaNV.Name = "txtMaNV";
+            this.txtMaNV.Size = new System.Drawing.Size(221, 23);
+            this.txtMaNV.TabIndex = 12;
+            this.txtMaNV.ValueMember = "MaNV";
             // 
             // frmUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 425);
+            this.ClientSize = new System.Drawing.Size(690, 581);
+            this.Controls.Add(hoTenLabel);
+            this.Controls.Add(this.txtMaNV);
+            this.Controls.Add(this.chkPassEdit);
             this.Controls.Add(this.chkActive);
             this.Controls.Add(lblActive);
             this.Controls.Add(lblLogin);
@@ -442,6 +518,10 @@
             this.Controls.Add(this.cmbRole);
             this.Controls.Add(this.usersDataGridView);
             this.Controls.Add(this.usersBindingNavigator);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "frmUser";
             this.Text = "QUẢN LÝ NGƯỜI DÙNG";
             this.Load += new System.EventHandler(this.frmUser_Load);
@@ -456,6 +536,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dsNdataMrpBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quyenBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,11 +571,16 @@
         private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.BindingSource quyenBindingSource1;
         private System.Windows.Forms.BindingSource usersBindingSource1;
+        private System.Windows.Forms.CheckBox chkPassEdit;
+        private System.Windows.Forms.BindingSource nhanVienBindingSource;
+        private dsNdataMrpTableAdapters.NhanVienTableAdapter nhanVienTableAdapter;
+        private System.Windows.Forms.ComboBox txtMaNV;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn active;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }

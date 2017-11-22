@@ -279,7 +279,7 @@ WHERE        (login = @usr) AND (pass = @pass)</CommandText>
   <xs:element name="dsNdataMrp" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsNdataMrp" msprop:Generator_UserDSName="dsNdataMrp">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Quyen" msprop:Generator_TableClassName="QuyenDataTable" msprop:Generator_TableVarName="tableQuyen" msprop:Generator_TablePropName="Quyen" msprop:Generator_RowDeletingName="QuyenRowDeleting" msprop:Generator_RowChangingName="QuyenRowChanging" msprop:Generator_RowEvHandlerName="QuyenRowChangeEventHandler" msprop:Generator_RowDeletedName="QuyenRowDeleted" msprop:Generator_UserTableName="Quyen" msprop:Generator_RowChangedName="QuyenRowChanged" msprop:Generator_RowEvArgName="QuyenRowChangeEvent" msprop:Generator_RowClassName="QuyenRow">
+        <xs:element name="Quyen" msprop:Generator_TableClassName="QuyenDataTable" msprop:Generator_TableVarName="tableQuyen" msprop:Generator_RowChangedName="QuyenRowChanged" msprop:Generator_TablePropName="Quyen" msprop:Generator_RowDeletingName="QuyenRowDeleting" msprop:Generator_RowChangingName="QuyenRowChanging" msprop:Generator_RowEvHandlerName="QuyenRowChangeEventHandler" msprop:Generator_RowDeletedName="QuyenRowDeleted" msprop:Generator_RowClassName="QuyenRow" msprop:Generator_UserTableName="Quyen" msprop:Generator_RowEvArgName="QuyenRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -300,7 +300,7 @@ WHERE        (login = @usr) AND (pass = @pass)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Users" msprop:Generator_TableClassName="UsersDataTable" msprop:Generator_TableVarName="tableUsers" msprop:Generator_TablePropName="Users" msprop:Generator_RowDeletingName="UsersRowDeleting" msprop:Generator_RowChangingName="UsersRowChanging" msprop:Generator_RowEvHandlerName="UsersRowChangeEventHandler" msprop:Generator_RowDeletedName="UsersRowDeleted" msprop:Generator_UserTableName="Users" msprop:Generator_RowChangedName="UsersRowChanged" msprop:Generator_RowEvArgName="UsersRowChangeEvent" msprop:Generator_RowClassName="UsersRow">
+        <xs:element name="Users" msprop:Generator_TableClassName="UsersDataTable" msprop:Generator_TableVarName="tableUsers" msprop:Generator_RowChangedName="UsersRowChanged" msprop:Generator_TablePropName="Users" msprop:Generator_RowDeletingName="UsersRowDeleting" msprop:Generator_RowChangingName="UsersRowChanging" msprop:Generator_RowEvHandlerName="UsersRowChangeEventHandler" msprop:Generator_RowDeletedName="UsersRowDeleted" msprop:Generator_RowClassName="UsersRow" msprop:Generator_UserTableName="Users" msprop:Generator_RowEvArgName="UsersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -332,7 +332,7 @@ WHERE        (login = @usr) AND (pass = @pass)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="NhanVien" msprop:Generator_TableClassName="NhanVienDataTable" msprop:Generator_TableVarName="tableNhanVien" msprop:Generator_RowChangedName="NhanVienRowChanged" msprop:Generator_TablePropName="NhanVien" msprop:Generator_RowDeletingName="NhanVienRowDeleting" msprop:Generator_RowChangingName="NhanVienRowChanging" msprop:Generator_RowEvHandlerName="NhanVienRowChangeEventHandler" msprop:Generator_RowDeletedName="NhanVienRowDeleted" msprop:Generator_RowClassName="NhanVienRow" msprop:Generator_UserTableName="NhanVien" msprop:Generator_RowEvArgName="NhanVienRowChangeEvent">
+        <xs:element name="NhanVien" msprop:Generator_TableClassName="NhanVienDataTable" msprop:Generator_TableVarName="tableNhanVien" msprop:Generator_TablePropName="NhanVien" msprop:Generator_RowDeletingName="NhanVienRowDeleting" msprop:Generator_RowChangingName="NhanVienRowChanging" msprop:Generator_RowEvHandlerName="NhanVienRowChangeEventHandler" msprop:Generator_RowDeletedName="NhanVienRowDeleted" msprop:Generator_UserTableName="NhanVien" msprop:Generator_RowChangedName="NhanVienRowChanged" msprop:Generator_RowEvArgName="NhanVienRowChangeEvent" msprop:Generator_RowClassName="NhanVienRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MaNV" msprop:Generator_ColumnVarNameInTable="columnMaNV" msprop:Generator_ColumnPropNameInRow="MaNV" msprop:Generator_ColumnPropNameInTable="MaNVColumn" msprop:Generator_UserColumnName="MaNV">
@@ -401,7 +401,8 @@ WHERE        (login = @usr) AND (pass = @pass)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Users_Quyen" msdata:parent="Quyen" msdata:child="Users" msdata:parentkey="id" msdata:childkey="role" msprop:Generator_UserChildTable="Users" msprop:Generator_ChildPropName="GetUsersRows" msprop:Generator_UserRelationName="FK_Users_Quyen" msprop:Generator_ParentPropName="QuyenRow" msprop:Generator_RelationVarName="relationFK_Users_Quyen" msprop:Generator_UserParentTable="Quyen" />
+      <msdata:Relationship name="FK_Users_Quyen" msdata:parent="Quyen" msdata:child="Users" msdata:parentkey="id" msdata:childkey="role" msprop:Generator_UserChildTable="Users" msprop:Generator_ChildPropName="GetUsersRows" msprop:Generator_UserRelationName="FK_Users_Quyen" msprop:Generator_RelationVarName="relationFK_Users_Quyen" msprop:Generator_UserParentTable="Quyen" msprop:Generator_ParentPropName="QuyenRow" />
+      <msdata:Relationship name="NhanVien_Users" msdata:parent="NhanVien" msdata:child="Users" msdata:parentkey="MaNV" msdata:childkey="MaNV" msprop:Generator_UserChildTable="Users" msprop:Generator_ChildPropName="GetUsersRows" msprop:Generator_UserRelationName="NhanVien_Users" msprop:Generator_RelationVarName="relationNhanVien_Users" msprop:Generator_UserParentTable="NhanVien" msprop:Generator_ParentPropName="NhanVienRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

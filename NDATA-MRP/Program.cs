@@ -21,7 +21,7 @@ namespace NDATA_MRP
             Application.SetCompatibleTextRenderingDefault(false);
             mainForm = new MainForm();
             //Application.Run(mainForm);
-            Application.Run(new frmNhanVien());
+            Application.Run(new frmUser());
         }
     }
 }

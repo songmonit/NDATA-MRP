@@ -32,6 +32,8 @@ namespace NDATA_MRP {
         
         private global::System.Data.DataRelation relationFK_Users_Quyen;
         
+        private global::System.Data.DataRelation relationNhanVien_Users;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -245,6 +247,7 @@ namespace NDATA_MRP {
                 }
             }
             this.relationFK_Users_Quyen = this.Relations["FK_Users_Quyen"];
+            this.relationNhanVien_Users = this.Relations["NhanVien_Users"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -265,6 +268,10 @@ namespace NDATA_MRP {
                         this.tableQuyen.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableUsers.roleColumn}, false);
             this.Relations.Add(this.relationFK_Users_Quyen);
+            this.relationNhanVien_Users = new global::System.Data.DataRelation("NhanVien_Users", new global::System.Data.DataColumn[] {
+                        this.tableNhanVien.MaNVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUsers.MaNVColumn}, false);
+            this.Relations.Add(this.relationNhanVien_Users);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -798,7 +805,7 @@ namespace NDATA_MRP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UsersRow AddUsersRow(string login, string pass, QuyenRow parentQuyenRowByFK_Users_Quyen, System.DateTime created, System.DateTime modified, bool active, string MaNV) {
+            public UsersRow AddUsersRow(string login, string pass, QuyenRow parentQuyenRowByFK_Users_Quyen, System.DateTime created, System.DateTime modified, bool active, NhanVienRow parentNhanVienRowByNhanVien_Users) {
                 UsersRow rowUsersRow = ((UsersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -808,9 +815,12 @@ namespace NDATA_MRP {
                         created,
                         modified,
                         active,
-                        MaNV};
+                        null};
                 if ((parentQuyenRowByFK_Users_Quyen != null)) {
                     columnValuesArray[3] = parentQuyenRowByFK_Users_Quyen[0];
+                }
+                if ((parentNhanVienRowByNhanVien_Users != null)) {
+                    columnValuesArray[7] = parentNhanVienRowByNhanVien_Users[0];
                 }
                 rowUsersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUsersRow);
@@ -1637,6 +1647,17 @@ namespace NDATA_MRP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public NhanVienRow NhanVienRow {
+                get {
+                    return ((NhanVienRow)(this.GetParentRow(this.Table.ParentRelations["NhanVien_Users"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["NhanVien_Users"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IspassNull() {
                 return this.IsNull(this.tableUsers.passColumn);
             }
@@ -1966,6 +1987,17 @@ namespace NDATA_MRP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDienThoaiNull() {
                 this[this.tableNhanVien.DienThoaiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UsersRow[] GetUsersRows() {
+                if ((this.Table.ChildRelations["NhanVien_Users"] == null)) {
+                    return new UsersRow[0];
+                }
+                else {
+                    return ((UsersRow[])(base.GetChildRows(this.Table.ChildRelations["NhanVien_Users"])));
+                }
             }
         }
         
@@ -3854,21 +3886,21 @@ SELECT MaNV, HoTen, NgaySinh, GioiTinh, HinhAnh, BoPhan, ChucVu, Status, DiaChi,
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._nhanVienTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.NhanVien.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._nhanVienTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -3890,19 +3922,19 @@ SELECT MaNV, HoTen, NgaySinh, GioiTinh, HinhAnh, BoPhan, ChucVu, Status, DiaChi,
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._nhanVienTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.NhanVien.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._nhanVienTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -3916,19 +3948,19 @@ SELECT MaNV, HoTen, NgaySinh, GioiTinh, HinhAnh, BoPhan, ChucVu, Status, DiaChi,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(dsNdataMrp dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._nhanVienTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.NhanVien.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._nhanVienTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._usersTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._usersTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._nhanVienTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.NhanVien.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._nhanVienTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

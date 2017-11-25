@@ -155,5 +155,22 @@ namespace NDATA_MRP
             { }
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            this.nhanVienTableAdapter.FillByHoTen(this.dsNdataMrp.NhanVien, txtSearch.Text);
+            lblMsgDel.Text = string.Empty;
+            lblMsgAdd.Text = string.Empty;
+        }
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            txtSearch.Text = String.Empty;
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtSearch.Text))
+                txtSearch.Text = "Nhập tên hoặc mã nhân viên...";
+        }
     }
 }

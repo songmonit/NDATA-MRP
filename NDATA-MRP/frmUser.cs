@@ -31,7 +31,7 @@ namespace NDATA_MRP
         }
         private void usersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            if (chkPassEdit.Checked)
+            if (chkPassEdit.Checked && txtPass.Text.Length<32)
             {
                 UtilityFunc u = new UtilityFunc();
                 txtPass.Text = u.md5(txtPass.Text);
@@ -58,6 +58,7 @@ namespace NDATA_MRP
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             txtPass.Enabled = true;
+            chkPassEdit.Checked = true;
             txtPass.Focus();
             txtPass.SelectAll();
         }

@@ -76,7 +76,7 @@
             this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.faxTextBox = new System.Windows.Forms.TextBox();
             this.taxTextBox = new System.Windows.Forms.TextBox();
-            this.statusComboBox = new System.Windows.Forms.ComboBox();
+            this.cmdStatus = new System.Windows.Forms.ComboBox();
             this.supplier_GroupTextBox = new System.Windows.Forms.TextBox();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.countryTextBox = new System.Windows.Forms.TextBox();
@@ -499,14 +499,17 @@
             this.taxTextBox.Size = new System.Drawing.Size(121, 20);
             this.taxTextBox.TabIndex = 15;
             // 
-            // statusComboBox
+            // cmdStatus
             // 
-            this.statusComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.suppliersBindingSource, "Status", true));
-            this.statusComboBox.FormattingEnabled = true;
-            this.statusComboBox.Location = new System.Drawing.Point(785, 76);
-            this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(121, 21);
-            this.statusComboBox.TabIndex = 17;
+            this.cmdStatus.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.suppliersBindingSource, "Status", true));
+            this.cmdStatus.FormattingEnabled = true;
+            this.cmdStatus.Items.AddRange(new object[] {
+            "20",
+            "90"});
+            this.cmdStatus.Location = new System.Drawing.Point(785, 76);
+            this.cmdStatus.Name = "cmdStatus";
+            this.cmdStatus.Size = new System.Drawing.Size(121, 21);
+            this.cmdStatus.TabIndex = 17;
             // 
             // supplier_GroupTextBox
             // 
@@ -539,7 +542,10 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ItemsTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
+            this.tableAdapterManager.PhieuCanChiTietTableAdapter = null;
+            this.tableAdapterManager.PhieuCanTableAdapter = null;
             this.tableAdapterManager.QuyenTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = this.suppliersTableAdapter;
             this.tableAdapterManager.UpdateOrder = NDATA_MRP.dsNdataMrpTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -634,7 +640,7 @@
             this.Controls.Add(taxLabel);
             this.Controls.Add(this.taxTextBox);
             this.Controls.Add(statusLabel);
-            this.Controls.Add(this.statusComboBox);
+            this.Controls.Add(this.cmdStatus);
             this.Controls.Add(supplier_GroupLabel);
             this.Controls.Add(this.supplier_GroupTextBox);
             this.Controls.Add(cityLabel);
@@ -687,7 +693,7 @@
         private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.TextBox faxTextBox;
         private System.Windows.Forms.TextBox taxTextBox;
-        private System.Windows.Forms.ComboBox statusComboBox;
+        private System.Windows.Forms.ComboBox cmdStatus;
         private System.Windows.Forms.TextBox supplier_GroupTextBox;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.TextBox countryTextBox;

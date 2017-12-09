@@ -79,6 +79,13 @@ namespace NDATA_MRP
             ad.Fill(table);
             return table;
         }
+        public SqlDataAdapter getSqlDataAdapter(String sSQL)
+        {
+            SqlConnection con = new ConnectDB().getConnection();
+            SqlDataAdapter ad = new SqlDataAdapter(sSQL, con);
+            return ad;
+
+        }
         public void addDataToListBox(ListBox listBox, String sSQL, SqlConnection con)
         {
             SqlDataReader dr = getDataToDataReader(sSQL, con);
@@ -100,14 +107,15 @@ namespace NDATA_MRP
             SqlCommand cm = new SqlCommand(sSQL, con);
             SqlDataReader dr = cm.ExecuteReader();
             cmb.Items.Clear();
-            cmb.Items.Add("All");
+            //cmb.Items.Add("All");
             while (dr.Read())
             {
                 cmb.Items.Add(dr[sText]);
             }
             dr.Close();
-            cmb.SelectedIndex = 0;
+            //cmb.SelectedIndex = 0;
         }
+        
         public bool checkKey(string sSQL, SqlConnection con)
         {
             SqlDataReader dr = getDataToDataReader(sSQL, con);
@@ -127,14 +135,64 @@ namespace NDATA_MRP
             flag = this.checkKey(sSql, con);
             return flag;
         }
-        public void write2Log(string logContent)
+
+        public bool checkRecordExit(string nameTable, string sWhere = "")
+        {
+            bool flag = false;
+            if (sWhere != "") sWhere = "WHERE " + sWhere;
+            string sSQL = "SELECT COUNT(*) FROM " + nameTable + "  " + sWhere + " ";
+            SqlConnection con = new ConnectDB().getConnection();
+            SqlCommand cm = new SqlCommand(sSQL, con);
+            int count = (int)cm.ExecuteScalar();
+            cm.Dispose();
+            if (count > 0) flag = true;
+            return flag;
+        }
+
+        public string GetLastID(string nameTable, string nameSelectColumn,string sWhere="")
+        {
+            string lastID = "";
+            if (sWhere != "") sWhere = "WHERE " + sWhere;
+            string sSQL = "SELECT TOP 1 " + nameSelectColumn + " FROM " + nameTable + "  "+sWhere+" ORDER BY " + nameSelectColumn + " DESC";
+            SqlConnection con = new ConnectDB().getConnection();
+            SqlCommand cm = new SqlCommand(sSQL, con);
+            var firstColumn= cm.ExecuteScalar();
+            if (firstColumn != null) lastID = firstColumn.ToString();
+            cm.Dispose();
+            return lastID;
+        }
+        public string NextID(string lastID, string prefixID="")
+        {
+            if (string.IsNullOrWhiteSpace(lastID)) lastID = "";
+            if (lastID == "")
+            {
+                return prefixID + "00001";  // fixwidth default
+            }
+            int nextID = int.Parse(lastID.Remove(0, prefixID.Length)) + 1;
+            int lengthNumerID = lastID.Length - prefixID.Length;
+            string zeroNumber = "";
+            for (int i = 1; i <= lengthNumerID; i++)
+            {
+                if (nextID < Math.Pow(10, i))
+                {
+                    for (int j = 1; j <= lengthNumerID - i; i++)
+                    {
+                        zeroNumber += "0";
+                    }
+                    return prefixID + zeroNumber + nextID.ToString();
+                }
+            }
+            return prefixID + nextID;
+
+        }
+        public void write2Log(string logContent, string sErrType="Info")
         {
             if (Program.logErr)
             {
                 //Table name = logerr(createdate,content, username)
                 try
                 {
-                    string sSQL = "INSERT logerr INTO (created_date=now(), content='" + logContent + "', username='" + Program.usrCurrent.username + "')";
+                    string sSQL = "INSERT logerr INTO (type='"+sErrType+"', created_date=now(), content='" + logContent + "', username='" + Program.usrCurrent.username + "')";
                     executeQuery(sSQL);
                 }
                 catch (Exception ex) { }

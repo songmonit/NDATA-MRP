@@ -108,5 +108,6 @@ namespace NDATA_MRP
                 dgvSupplier[i, e.RowIndex].Style.BackColor = Color.Empty;
             }
         }
+
     }
 }

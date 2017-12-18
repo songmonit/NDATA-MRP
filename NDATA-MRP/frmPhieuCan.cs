@@ -26,7 +26,7 @@ namespace NDATA_MRP
         private void phieuCanChiTietBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-
+            
 
         }
 

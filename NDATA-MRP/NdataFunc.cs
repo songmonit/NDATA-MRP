@@ -149,7 +149,7 @@ namespace NDATA_MRP
             return flag;
         }
 
-        public string GetLastID(string nameTable, string nameSelectColumn,string sWhere="")
+        public string getLasFieldValue(string nameTable, string nameSelectColumn,string sWhere="")
         {
             string lastID = "";
             if (sWhere != "") sWhere = "WHERE " + sWhere;

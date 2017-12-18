@@ -46,7 +46,7 @@
             System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label9;
             System.Windows.Forms.Label luu_khoLabel1;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPhieuCanHang));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -72,20 +72,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.txtMCDuyet = new System.Windows.Forms.TextBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.cmbNguoiCan = new System.Windows.Forms.ComboBox();
+            this.cmbQCDuyet = new System.Windows.Forms.ComboBox();
+            this.cmbMCDuyet = new System.Windows.Forms.ComboBox();
+            this.cmbNguoiDuyet = new System.Windows.Forms.ComboBox();
             this.txtTongKL = new System.Windows.Forms.TextBox();
-            this.txtQCDuyet = new System.Windows.Forms.TextBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.txtNguoiDuyet = new System.Windows.Forms.TextBox();
-            this.txtNguoiCan = new System.Windows.Forms.TextBox();
             this.dgvPhieuCanChiTiet = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.txtCQNote = new System.Windows.Forms.RichTextBox();
+            this.txtQCNote = new System.Windows.Forms.RichTextBox();
             this.chkOkQC = new System.Windows.Forms.CheckBox();
             this.panelRDetail = new System.Windows.Forms.Panel();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.txtLot = new System.Windows.Forms.TextBox();
             this.txtLanCan = new System.Windows.Forms.TextBox();
@@ -105,6 +106,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.phieuCanBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.tlbSatus = new System.Windows.Forms.ToolStripLabel();
             this.phieuCanTableAdapter = new NDATA_MRP.dsNdataMrpTableAdapters.PhieuCanTableAdapter();
             this.tableAdapterManager = new NDATA_MRP.dsNdataMrpTableAdapters.TableAdapterManager();
             ma_KHLabel = new System.Windows.Forms.Label();
@@ -157,7 +159,7 @@
             // 
             ten_KHLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             ten_KHLabel.AutoSize = true;
-            ten_KHLabel.Location = new System.Drawing.Point(84, 4);
+            ten_KHLabel.Location = new System.Drawing.Point(88, 4);
             ten_KHLabel.Name = "ten_KHLabel";
             ten_KHLabel.Size = new System.Drawing.Size(86, 13);
             ten_KHLabel.TabIndex = 9;
@@ -166,7 +168,7 @@
             // nguonLabel
             // 
             nguonLabel.AutoSize = true;
-            nguonLabel.Location = new System.Drawing.Point(8, 21);
+            nguonLabel.Location = new System.Drawing.Point(9, 21);
             nguonLabel.Name = "nguonLabel";
             nguonLabel.Size = new System.Drawing.Size(60, 13);
             nguonLabel.TabIndex = 13;
@@ -185,7 +187,7 @@
             // 
             ngayLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             ngayLabel.AutoSize = true;
-            ngayLabel.Location = new System.Drawing.Point(44, 4);
+            ngayLabel.Location = new System.Drawing.Point(35, 4);
             ngayLabel.Name = "ngayLabel";
             ngayLabel.Size = new System.Drawing.Size(53, 13);
             ngayLabel.TabIndex = 17;
@@ -194,7 +196,7 @@
             // gio_denLabel
             // 
             gio_denLabel.AutoSize = true;
-            gio_denLabel.Location = new System.Drawing.Point(144, 4);
+            gio_denLabel.Location = new System.Drawing.Point(137, 4);
             gio_denLabel.Name = "gio_denLabel";
             gio_denLabel.Size = new System.Drawing.Size(76, 13);
             gio_denLabel.TabIndex = 19;
@@ -254,17 +256,17 @@
             // statusLabel
             // 
             statusLabel.AutoSize = true;
-            statusLabel.Location = new System.Drawing.Point(33, 13);
+            statusLabel.Location = new System.Drawing.Point(16, 14);
             statusLabel.Name = "statusLabel";
-            statusLabel.Size = new System.Drawing.Size(38, 13);
+            statusLabel.Size = new System.Drawing.Size(58, 13);
             statusLabel.TabIndex = 37;
-            statusLabel.Text = "status:";
+            statusLabel.Text = "Trạng thái:";
             // 
             // label4
             // 
             label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(78, 4);
+            label4.Location = new System.Drawing.Point(94, 4);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(66, 13);
             label4.TabIndex = 39;
@@ -301,7 +303,7 @@
             // luu_khoLabel1
             // 
             luu_khoLabel1.AutoSize = true;
-            luu_khoLabel1.Location = new System.Drawing.Point(8, 53);
+            luu_khoLabel1.Location = new System.Drawing.Point(9, 53);
             luu_khoLabel1.Name = "luu_khoLabel1";
             luu_khoLabel1.Size = new System.Drawing.Size(49, 13);
             luu_khoLabel1.TabIndex = 27;
@@ -333,6 +335,7 @@
             this.splitContainer1.Size = new System.Drawing.Size(1019, 589);
             this.splitContainer1.SplitterDistance = 152;
             this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabStop = false;
             // 
             // tableLayoutPanel1
             // 
@@ -340,10 +343,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.92188F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.07813F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 241F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.62808F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.37192F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 229F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.tableLayoutPanel1.Controls.Add(this.panel3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
@@ -366,17 +369,17 @@
             this.panel3.Controls.Add(ngayLabel);
             this.panel3.Controls.Add(this.dateTimePickerNgayCan);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(490, 5);
+            this.panel3.Location = new System.Drawing.Point(531, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(235, 82);
+            this.panel3.Size = new System.Drawing.Size(216, 82);
             this.panel3.TabIndex = 2;
             // 
             // txtSoXe
             // 
             this.txtSoXe.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "So_xe", true));
-            this.txtSoXe.Location = new System.Drawing.Point(70, 50);
+            this.txtSoXe.Location = new System.Drawing.Point(63, 50);
             this.txtSoXe.Name = "txtSoXe";
-            this.txtSoXe.Size = new System.Drawing.Size(154, 20);
+            this.txtSoXe.Size = new System.Drawing.Size(141, 20);
             this.txtSoXe.TabIndex = 16;
             // 
             // phieuCanBindingSource
@@ -393,18 +396,19 @@
             // 
             this.dateTimePickerGioDen.CustomFormat = "\"HH:MM\"";
             this.dateTimePickerGioDen.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "gio_den", true));
-            this.dateTimePickerGioDen.Location = new System.Drawing.Point(142, 18);
+            this.dateTimePickerGioDen.Location = new System.Drawing.Point(135, 18);
+            this.dateTimePickerGioDen.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerGioDen.Name = "dateTimePickerGioDen";
-            this.dateTimePickerGioDen.Size = new System.Drawing.Size(82, 20);
-            this.dateTimePickerGioDen.TabIndex = 39;
+            this.dateTimePickerGioDen.Size = new System.Drawing.Size(69, 20);
+            this.dateTimePickerGioDen.TabIndex = 15;
             // 
             // dateTimePickerNgayCan
             // 
             this.dateTimePickerNgayCan.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.phieuCanBindingSource, "Ngay", true));
-            this.dateTimePickerNgayCan.Location = new System.Drawing.Point(17, 18);
+            this.dateTimePickerNgayCan.Location = new System.Drawing.Point(10, 18);
             this.dateTimePickerNgayCan.Name = "dateTimePickerNgayCan";
             this.dateTimePickerNgayCan.Size = new System.Drawing.Size(119, 20);
-            this.dateTimePickerNgayCan.TabIndex = 18;
+            this.dateTimePickerNgayCan.TabIndex = 14;
             // 
             // panel2
             // 
@@ -415,8 +419,8 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(210, 82);
-            this.panel2.TabIndex = 1;
+            this.panel2.Size = new System.Drawing.Size(243, 82);
+            this.panel2.TabIndex = 0;
             // 
             // cmbMaNL
             // 
@@ -427,8 +431,8 @@
             this.cmbMaNL.FormattingEnabled = true;
             this.cmbMaNL.Location = new System.Drawing.Point(57, 48);
             this.cmbMaNL.Name = "cmbMaNL";
-            this.cmbMaNL.Size = new System.Drawing.Size(143, 21);
-            this.cmbMaNL.TabIndex = 41;
+            this.cmbMaNL.Size = new System.Drawing.Size(176, 21);
+            this.cmbMaNL.TabIndex = 11;
             this.cmbMaNL.SelectedIndexChanged += new System.EventHandler(this.cmbMaNL_SelectedIndexChanged);
             // 
             // cmbItem
@@ -443,8 +447,8 @@
             this.cmbItem.FormattingEnabled = true;
             this.cmbItem.Location = new System.Drawing.Point(12, 18);
             this.cmbItem.Name = "cmbItem";
-            this.cmbItem.Size = new System.Drawing.Size(188, 21);
-            this.cmbItem.TabIndex = 40;
+            this.cmbItem.Size = new System.Drawing.Size(221, 21);
+            this.cmbItem.TabIndex = 10;
             this.cmbItem.SelectedIndexChanged += new System.EventHandler(this.cmbItem_SelectedIndexChanged);
             // 
             // panel4
@@ -454,26 +458,26 @@
             this.panel4.Controls.Add(this.txtLuuKho);
             this.panel4.Controls.Add(nguonLabel);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(733, 5);
+            this.panel4.Location = new System.Drawing.Point(755, 5);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(246, 82);
+            this.panel4.Size = new System.Drawing.Size(224, 82);
             this.panel4.TabIndex = 3;
             // 
             // txtNguon
             // 
             this.txtNguon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "Nguon", true));
-            this.txtNguon.Location = new System.Drawing.Point(70, 18);
+            this.txtNguon.Location = new System.Drawing.Point(71, 18);
             this.txtNguon.Name = "txtNguon";
             this.txtNguon.Size = new System.Drawing.Size(126, 20);
-            this.txtNguon.TabIndex = 14;
+            this.txtNguon.TabIndex = 17;
             // 
             // txtLuuKho
             // 
             this.txtLuuKho.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "Kho_luu", true));
-            this.txtLuuKho.Location = new System.Drawing.Point(70, 50);
+            this.txtLuuKho.Location = new System.Drawing.Point(71, 50);
             this.txtLuuKho.Name = "txtLuuKho";
             this.txtLuuKho.Size = new System.Drawing.Size(126, 20);
-            this.txtLuuKho.TabIndex = 28;
+            this.txtLuuKho.TabIndex = 18;
             // 
             // panel1
             // 
@@ -482,10 +486,10 @@
             this.panel1.Controls.Add(this.cmbMaKH);
             this.panel1.Controls.Add(ma_KHLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(223, 5);
+            this.panel1.Location = new System.Drawing.Point(256, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(259, 82);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(267, 82);
+            this.panel1.TabIndex = 1;
             // 
             // cmbTenKH
             // 
@@ -493,26 +497,28 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbTenKH.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbTenKH.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbTenKH.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.phieuCanBindingSource, "Ten_KH", true));
             this.cmbTenKH.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.phieuCanBindingSource, "Ma_KH", true));
+            this.cmbTenKH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "Ten_KH", true));
             this.cmbTenKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTenKH.FormattingEnabled = true;
             this.cmbTenKH.Location = new System.Drawing.Point(10, 18);
             this.cmbTenKH.Name = "cmbTenKH";
-            this.cmbTenKH.Size = new System.Drawing.Size(239, 21);
-            this.cmbTenKH.TabIndex = 10;
+            this.cmbTenKH.Size = new System.Drawing.Size(247, 21);
+            this.cmbTenKH.TabIndex = 12;
             this.cmbTenKH.SelectedIndexChanged += new System.EventHandler(this.cmbTenKH_SelectedIndexChanged);
             // 
             // cmbMaKH
             // 
+            this.cmbMaKH.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbMaKH.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbMaKH.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbMaKH.DisplayMember = "Supplier_code";
             this.cmbMaKH.FormattingEnabled = true;
-            this.cmbMaKH.Location = new System.Drawing.Point(72, 49);
+            this.cmbMaKH.Location = new System.Drawing.Point(57, 50);
             this.cmbMaKH.Name = "cmbMaKH";
-            this.cmbMaKH.Size = new System.Drawing.Size(177, 21);
-            this.cmbMaKH.TabIndex = 8;
+            this.cmbMaKH.Size = new System.Drawing.Size(200, 21);
+            this.cmbMaKH.TabIndex = 13;
             this.cmbMaKH.ValueMember = "Supplier_code";
             this.cmbMaKH.SelectedIndexChanged += new System.EventHandler(this.cmbMaKH_SelectedIndexChanged);
             // 
@@ -522,7 +528,6 @@
             this.txtSoPhieu.BackColor = System.Drawing.SystemColors.Control;
             this.txtSoPhieu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSoPhieu.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "So_Phieu", true));
-            this.txtSoPhieu.Enabled = false;
             this.txtSoPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSoPhieu.ForeColor = System.Drawing.Color.Red;
             this.txtSoPhieu.Location = new System.Drawing.Point(794, 16);
@@ -530,6 +535,7 @@
             this.txtSoPhieu.Size = new System.Drawing.Size(90, 19);
             this.txtSoPhieu.TabIndex = 4;
             this.txtSoPhieu.Text = "Chưa tạo";
+            this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
             // 
             // so_TTTextBox
             // 
@@ -600,17 +606,18 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.txtMCDuyet);
+            this.panel5.Controls.Add(this.lblStatus);
+            this.panel5.Controls.Add(this.txtStatus);
+            this.panel5.Controls.Add(this.cmbNguoiCan);
+            this.panel5.Controls.Add(this.cmbQCDuyet);
+            this.panel5.Controls.Add(this.cmbMCDuyet);
+            this.panel5.Controls.Add(this.cmbNguoiDuyet);
             this.panel5.Controls.Add(qc_duyetLabel);
             this.panel5.Controls.Add(this.txtTongKL);
-            this.panel5.Controls.Add(this.txtQCDuyet);
             this.panel5.Controls.Add(tong_KLLabel);
             this.panel5.Controls.Add(mc_duyetLabel);
-            this.panel5.Controls.Add(this.cmbStatus);
             this.panel5.Controls.Add(statusLabel);
             this.panel5.Controls.Add(nguoi_canLabel);
-            this.panel5.Controls.Add(this.txtNguoiDuyet);
-            this.panel5.Controls.Add(this.txtNguoiCan);
             this.panel5.Controls.Add(nguoi_duyetLabel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 321);
@@ -618,14 +625,71 @@
             this.panel5.Size = new System.Drawing.Size(532, 94);
             this.panel5.TabIndex = 0;
             // 
-            // txtMCDuyet
+            // lblStatus
             // 
-            this.txtMCDuyet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMCDuyet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "mc_duyet", true));
-            this.txtMCDuyet.Location = new System.Drawing.Point(343, 39);
-            this.txtMCDuyet.Name = "txtMCDuyet";
-            this.txtMCDuyet.Size = new System.Drawing.Size(169, 20);
-            this.txtMCDuyet.TabIndex = 34;
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(80, 13);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(14, 13);
+            this.lblStatus.TabIndex = 40;
+            this.lblStatus.Text = "?";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "status", true));
+            this.txtStatus.Location = new System.Drawing.Point(185, 9);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(67, 20);
+            this.txtStatus.TabIndex = 39;
+            this.txtStatus.Visible = false;
+            this.txtStatus.TextChanged += new System.EventHandler(this.txtStatus_TextChanged);
+            // 
+            // cmbNguoiCan
+            // 
+            this.cmbNguoiCan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbNguoiCan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbNguoiCan.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "Nguoi_can", true));
+            this.cmbNguoiCan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.cmbNguoiCan.FormattingEnabled = true;
+            this.cmbNguoiCan.Location = new System.Drawing.Point(83, 39);
+            this.cmbNguoiCan.Name = "cmbNguoiCan";
+            this.cmbNguoiCan.Size = new System.Drawing.Size(170, 21);
+            this.cmbNguoiCan.TabIndex = 19;
+            // 
+            // cmbQCDuyet
+            // 
+            this.cmbQCDuyet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbQCDuyet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbQCDuyet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "qc_duyet", true));
+            this.cmbQCDuyet.FormattingEnabled = true;
+            this.cmbQCDuyet.Location = new System.Drawing.Point(343, 68);
+            this.cmbQCDuyet.Name = "cmbQCDuyet";
+            this.cmbQCDuyet.Size = new System.Drawing.Size(170, 21);
+            this.cmbQCDuyet.TabIndex = 22;
+            // 
+            // cmbMCDuyet
+            // 
+            this.cmbMCDuyet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbMCDuyet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbMCDuyet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "mc_duyet", true));
+            this.cmbMCDuyet.FormattingEnabled = true;
+            this.cmbMCDuyet.Location = new System.Drawing.Point(343, 39);
+            this.cmbMCDuyet.Name = "cmbMCDuyet";
+            this.cmbMCDuyet.Size = new System.Drawing.Size(170, 21);
+            this.cmbMCDuyet.TabIndex = 21;
+            // 
+            // cmbNguoiDuyet
+            // 
+            this.cmbNguoiDuyet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbNguoiDuyet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbNguoiDuyet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "Nguoi_duyet", true));
+            this.cmbNguoiDuyet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.cmbNguoiDuyet.FormattingEnabled = true;
+            this.cmbNguoiDuyet.Location = new System.Drawing.Point(83, 68);
+            this.cmbNguoiDuyet.Name = "cmbNguoiDuyet";
+            this.cmbNguoiDuyet.Size = new System.Drawing.Size(170, 21);
+            this.cmbNguoiDuyet.TabIndex = 20;
             // 
             // txtTongKL
             // 
@@ -636,72 +700,31 @@
             this.txtTongKL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTongKL.Location = new System.Drawing.Point(343, 10);
             this.txtTongKL.Name = "txtTongKL";
-            this.txtTongKL.Size = new System.Drawing.Size(169, 22);
+            this.txtTongKL.Size = new System.Drawing.Size(170, 22);
             this.txtTongKL.TabIndex = 28;
-            // 
-            // txtQCDuyet
-            // 
-            this.txtQCDuyet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtQCDuyet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "qc_duyet", true));
-            this.txtQCDuyet.Location = new System.Drawing.Point(343, 65);
-            this.txtQCDuyet.Name = "txtQCDuyet";
-            this.txtQCDuyet.Size = new System.Drawing.Size(169, 20);
-            this.txtQCDuyet.TabIndex = 36;
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.phieuCanBindingSource, "status", true));
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "90",
-            "20"});
-            this.cmbStatus.Location = new System.Drawing.Point(83, 10);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(58, 21);
-            this.cmbStatus.TabIndex = 38;
-            // 
-            // txtNguoiDuyet
-            // 
-            this.txtNguoiDuyet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNguoiDuyet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "Nguoi_duyet", true));
-            this.txtNguoiDuyet.Location = new System.Drawing.Point(83, 65);
-            this.txtNguoiDuyet.Name = "txtNguoiDuyet";
-            this.txtNguoiDuyet.Size = new System.Drawing.Size(170, 20);
-            this.txtNguoiDuyet.TabIndex = 32;
-            // 
-            // txtNguoiCan
-            // 
-            this.txtNguoiCan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNguoiCan.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "Nguoi_can", true));
-            this.txtNguoiCan.Location = new System.Drawing.Point(83, 39);
-            this.txtNguoiCan.Name = "txtNguoiCan";
-            this.txtNguoiCan.Size = new System.Drawing.Size(170, 20);
-            this.txtNguoiCan.TabIndex = 30;
             // 
             // dgvPhieuCanChiTiet
             // 
             this.dgvPhieuCanChiTiet.AllowUserToAddRows = false;
             this.dgvPhieuCanChiTiet.AllowUserToOrderColumns = true;
             this.dgvPhieuCanChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPhieuCanChiTiet.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPhieuCanChiTiet.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPhieuCanChiTiet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPhieuCanChiTiet.Location = new System.Drawing.Point(3, 3);
             this.dgvPhieuCanChiTiet.Name = "dgvPhieuCanChiTiet";
             this.dgvPhieuCanChiTiet.Size = new System.Drawing.Size(532, 312);
             this.dgvPhieuCanChiTiet.TabIndex = 1;
-            this.dgvPhieuCanChiTiet.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPhieuCanChiTiet_RowValidated);
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.txtCQNote);
+            this.panel6.Controls.Add(this.txtQCNote);
             this.panel6.Controls.Add(label8);
             this.panel6.Controls.Add(this.chkOkQC);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -710,16 +733,18 @@
             this.panel6.Size = new System.Drawing.Size(440, 94);
             this.panel6.TabIndex = 2;
             // 
-            // txtCQNote
+            // txtQCNote
             // 
-            this.txtCQNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtQCNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCQNote.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "QC_note", true));
-            this.txtCQNote.Location = new System.Drawing.Point(111, 13);
-            this.txtCQNote.Name = "txtCQNote";
-            this.txtCQNote.Size = new System.Drawing.Size(296, 72);
-            this.txtCQNote.TabIndex = 25;
-            this.txtCQNote.Text = "Đánh giá chi tiết";
+            this.txtQCNote.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.phieuCanBindingSource, "QC_note", true));
+            this.txtQCNote.Location = new System.Drawing.Point(111, 13);
+            this.txtQCNote.Name = "txtQCNote";
+            this.txtQCNote.Size = new System.Drawing.Size(296, 72);
+            this.txtQCNote.TabIndex = 24;
+            this.txtQCNote.Text = "Đánh giá chi tiết";
+            this.txtQCNote.Enter += new System.EventHandler(this.txtQCNote_Enter);
+            this.txtQCNote.Leave += new System.EventHandler(this.txtQCNote_Leave);
             // 
             // chkOkQC
             // 
@@ -732,7 +757,7 @@
             this.chkOkQC.Location = new System.Drawing.Point(25, 42);
             this.chkOkQC.Name = "chkOkQC";
             this.chkOkQC.Size = new System.Drawing.Size(45, 19);
-            this.chkOkQC.TabIndex = 37;
+            this.chkOkQC.TabIndex = 23;
             this.chkOkQC.Text = "Đạt";
             this.chkOkQC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkOkQC.UseVisualStyleBackColor = true;
@@ -742,8 +767,8 @@
             this.panelRDetail.AutoScroll = true;
             this.panelRDetail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelRDetail.Controls.Add(this.btnPrint);
-            this.panelRDetail.Controls.Add(this.btnXoa);
-            this.panelRDetail.Controls.Add(this.btnLuu);
+            this.panelRDetail.Controls.Add(this.btnDel);
+            this.panelRDetail.Controls.Add(this.btnSave);
             this.panelRDetail.Controls.Add(label7);
             this.panelRDetail.Controls.Add(this.btnOk);
             this.panelRDetail.Controls.Add(this.txtLot);
@@ -759,30 +784,41 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(27, 276);
+            this.btnPrint.Enabled = false;
+            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.Location = new System.Drawing.Point(327, 281);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.Size = new System.Drawing.Size(76, 23);
             this.btnPrint.TabIndex = 28;
             this.btnPrint.Text = "In Phiếu";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
-            // btnXoa
+            // btnDel
             // 
-            this.btnXoa.Location = new System.Drawing.Point(250, 276);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(75, 23);
-            this.btnXoa.TabIndex = 27;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnDel.Image = ((System.Drawing.Image)(resources.GetObject("btnDel.Image")));
+            this.btnDel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDel.Location = new System.Drawing.Point(27, 281);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(75, 23);
+            this.btnDel.TabIndex = 27;
+            this.btnDel.Text = "Xóa";
+            this.btnDel.UseVisualStyleBackColor = true;
             // 
-            // btnLuu
+            // btnSave
             // 
-            this.btnLuu.Location = new System.Drawing.Point(331, 276);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(75, 23);
-            this.btnLuu.TabIndex = 26;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(110, 281);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(92, 23);
+            this.btnSave.TabIndex = 26;
+            this.btnSave.Text = "Kết thúc cân";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnOk
             // 
@@ -823,7 +859,7 @@
             this.txtTrongLuong.Name = "txtTrongLuong";
             this.txtTrongLuong.Size = new System.Drawing.Size(259, 62);
             this.txtTrongLuong.TabIndex = 2;
-            this.txtTrongLuong.Text = "1";
+            this.txtTrongLuong.Text = "0.0";
             this.txtTrongLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
@@ -862,7 +898,8 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.phieuCanBindingNavigatorSaveItem});
+            this.phieuCanBindingNavigatorSaveItem,
+            this.tlbSatus});
             this.phieuCanBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.phieuCanBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.phieuCanBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -881,14 +918,15 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(102, 22);
             this.bindingNavigatorAddNewItem.Text = "Tạo phiếu cân";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
+            this.bindingNavigatorCountItem.Enabled = false;
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
             this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            this.bindingNavigatorCountItem.Visible = false;
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -902,62 +940,75 @@
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Enabled = false;
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            this.bindingNavigatorMoveFirstItem.Visible = false;
             // 
             // bindingNavigatorMovePreviousItem
             // 
             this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Enabled = false;
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            this.bindingNavigatorMovePreviousItem.Visible = false;
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
             this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator.Visible = false;
             // 
             // bindingNavigatorPositionItem
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Enabled = false;
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            this.bindingNavigatorPositionItem.Visible = false;
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator1.Visible = false;
             // 
             // bindingNavigatorMoveNextItem
             // 
             this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Enabled = false;
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
+            this.bindingNavigatorMoveNextItem.Visible = false;
             // 
             // bindingNavigatorMoveLastItem
             // 
             this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Enabled = false;
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
+            this.bindingNavigatorMoveLastItem.Visible = false;
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Visible = false;
             // 
             // phieuCanBindingNavigatorSaveItem
             // 
@@ -965,8 +1016,16 @@
             this.phieuCanBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("phieuCanBindingNavigatorSaveItem.Image")));
             this.phieuCanBindingNavigatorSaveItem.Name = "phieuCanBindingNavigatorSaveItem";
             this.phieuCanBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.phieuCanBindingNavigatorSaveItem.Text = "Save Data";
+            this.phieuCanBindingNavigatorSaveItem.Text = "Tạo và Lưu phiếu";
             this.phieuCanBindingNavigatorSaveItem.Click += new System.EventHandler(this.phieuCanBindingNavigatorSaveItem_Click);
+            // 
+            // tlbSatus
+            // 
+            this.tlbSatus.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tlbSatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlbSatus.Name = "tlbSatus";
+            this.tlbSatus.Size = new System.Drawing.Size(12, 22);
+            this.tlbSatus.Text = "?";
             // 
             // phieuCanTableAdapter
             // 
@@ -1042,11 +1101,6 @@
         private System.Windows.Forms.TextBox txtSoXe;
         private System.Windows.Forms.DateTimePicker dateTimePickerNgayCan;
         private System.Windows.Forms.TextBox txtTongKL;
-        private System.Windows.Forms.TextBox txtNguoiCan;
-        private System.Windows.Forms.TextBox txtNguoiDuyet;
-        private System.Windows.Forms.TextBox txtMCDuyet;
-        private System.Windows.Forms.TextBox txtQCDuyet;
-        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.ComboBox cmbItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
@@ -1066,10 +1120,10 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.TextBox txtLot;
         private System.Windows.Forms.CheckBox chkOkQC;
-        private System.Windows.Forms.RichTextBox txtCQNote;
+        private System.Windows.Forms.RichTextBox txtQCNote;
         private System.Windows.Forms.ComboBox cmbMaNL;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnLuu;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Button btnSave;
         private dsNdataMrp dsNdataMrp;
         private System.Windows.Forms.BindingSource phieuCanBindingSource;
         private dsNdataMrpTableAdapters.PhieuCanTableAdapter phieuCanTableAdapter;
@@ -1089,5 +1143,12 @@
         private System.Windows.Forms.ToolStripButton phieuCanBindingNavigatorSaveItem;
         private System.Windows.Forms.TextBox txtLuuKho;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.ComboBox cmbQCDuyet;
+        private System.Windows.Forms.ComboBox cmbMCDuyet;
+        private System.Windows.Forms.ComboBox cmbNguoiDuyet;
+        private System.Windows.Forms.ComboBox cmbNguoiCan;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.ToolStripLabel tlbSatus;
     }
 }

@@ -24,90 +24,114 @@ namespace NDATA_MRP
         private int lanCan = 1;
         private void frmPhieuCanHang_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dsNdataMrp.PhieuCan' table. You can move, or remove it, as needed.
-            this.phieuCanTableAdapter.Fill(this.dsNdataMrp.PhieuCan);
-            phieuCanBindingSource.AddNew();
-            //dateTime format
-            dateTimePickerNgayCan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            dateTimePickerNgayCan.CustomFormat = "dd-MM-yyyy";
+            try
+            {
+                // Loads data into the 'dsNdataMrp.PhieuCan' table.
+                this.phieuCanTableAdapter.Fill(this.dsNdataMrp.PhieuCan);
+                phieuCanBindingSource.AddNew();
 
-            dateTimePickerGioDen.Format = DateTimePickerFormat.Custom;
-            dateTimePickerGioDen.CustomFormat = "HH:mm";
-            dateTimePickerGioDen.ShowUpDown = true;
+                //dateTime format
+                dateTimePickerNgayCan.Value = DateTime.Today;
+                dateTimePickerNgayCan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                dateTimePickerNgayCan.CustomFormat = "dd-MM-yyyy";
 
-            //Load MaKH
-            NdataFunc f = new NdataFunc();
-            String sSQL = "SELECT supplier_code, supplier_name FROM dbo.Suppliers ORDER BY supplier_name ASC";
-            f.addToComboBox1(cmbMaKH, sSQL,"supplier_code");
-            
-            //Load TenKH
-            sSQL = "SELECT supplier_code, supplier_name FROM dbo.Suppliers ORDER BY supplier_name ASC";
-            f.addToComboBox(cmbTenKH, sSQL, "supplier_name","supplier_code");
-            cmbTenKH.SelectedIndex = -1;
+                //dateTimePickerGioDen.Text = DateTime.Now.ToShortTimeString();
+                dateTimePickerGioDen.Format = DateTimePickerFormat.Custom;
+                dateTimePickerGioDen.CustomFormat = "HH:mm";
+                dateTimePickerGioDen.ShowUpDown = true;
+                dateTimePickerGioDen.Value = DateTime.Now;
 
-            //load Items No
-            sSQL = "SELECT item_no, name FROM dbo.Items ORDER BY item_no ASC";
-            f.addToComboBox1(cmbMaNL, sSQL,"item_no");
+                //Load MaKH
+                NdataFunc f = new NdataFunc();
+                String sSQL = "SELECT supplier_code, supplier_name FROM dbo.Suppliers ORDER BY supplier_name ASC";
+                f.addToComboBox1(cmbMaKH, sSQL, "supplier_code");
 
-            //load Items
-            sSQL = "SELECT item_no, name FROM dbo.Items ORDER BY name ASC";
-            f.addToComboBox(cmbItem, sSQL, "name", "item_no");
-            cmbItem.SelectedIndex = -1;
+                //Load TenKH
+                sSQL = "SELECT supplier_code, supplier_name FROM dbo.Suppliers ORDER BY supplier_name ASC";
+                f.addToComboBox(cmbTenKH, sSQL, "supplier_name", "supplier_code");
+                cmbTenKH.SelectedIndex = -1;
 
-            //set default status value
-            cmbStatus.SelectedIndex = 0;
+                //load Items No
+                sSQL = "SELECT item_no, name FROM dbo.Items ORDER BY item_no ASC";
+                f.addToComboBox1(cmbMaNL, sSQL, "item_no");
 
-            //Input PhieuCan
-            initPhieuCanChiTiet();
+                //load Items
+                sSQL = "SELECT item_no, name FROM dbo.Items ORDER BY name ASC";
+                f.addToComboBox(cmbItem, sSQL, "name", "item_no");
+                cmbItem.SelectedIndex = -1;
 
-            //panelRDetail.Enabled = false;
-            //dgvPhieuCanChiTiet.Enabled = false;
+                //Set default status
+                txtStatus.Text = "10";
+
+                //Set default QC note
+                txtQCNote.Text = "Đánh giá chất lượng";
+                chkOkQC.Checked = true;
+
+                //Input PhieuCan
+                initPhieuCanChiTiet(txtSoPhieu.Text);
+
+                //input NguoiCan
+                cmbNguoiCan.Text = f.getLasFieldValue("NhanVien","HoTen","MaNV=N'"+ Program.usrCurrent.ma_NV+"' ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void initPhieuCanChiTiet()
+        private void initPhieuCanChiTiet(string soPhieu)
         {
-            String sSQL = "SELECT phieu_can,lan_can,trong_luong,lot FROM PhieuCanChiTiet";
-            NdataFunc ndata = new NdataFunc();
-            sqlDataAdapter = ndata.getSqlDataAdapter(sSQL);
-            sqlCommandBuilder = new SqlCommandBuilder(sqlDataAdapter);
+            try
+            {
+                String sSQL = "SELECT phieu_can,lan_can,trong_luong,lot,status FROM PhieuCanChiTiet WHERE phieu_can=N'" + soPhieu + "'";
+                NdataFunc ndata = new NdataFunc();
+                sqlDataAdapter = ndata.getSqlDataAdapter(sSQL);
+                sqlCommandBuilder = new SqlCommandBuilder(sqlDataAdapter);
 
-            dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-            bindingSource = new BindingSource();
-            bindingSource.DataSource = dataTable;
+                dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                bindingSource = new BindingSource();
+                bindingSource.DataSource = dataTable;
 
-            dgvPhieuCanChiTiet.DataSource = bindingSource;
+                dgvPhieuCanChiTiet.DataSource = bindingSource;
 
 
-            dgvPhieuCanChiTiet.Columns[0].HeaderText = "PHIẾU CÂN";
-            dgvPhieuCanChiTiet.Columns[0].Visible = false;
-            dgvPhieuCanChiTiet.Columns[0].DefaultCellStyle.ForeColor = Color.Gray;
+                dgvPhieuCanChiTiet.Columns[0].HeaderText = "PHIẾU CÂN";
+                dgvPhieuCanChiTiet.Columns[0].Visible = false;
+                dgvPhieuCanChiTiet.Columns[0].DefaultCellStyle.ForeColor = Color.Gray;
 
-            dgvPhieuCanChiTiet.Columns[1].HeaderText = "LẦN CÂN";
-            dgvPhieuCanChiTiet.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvPhieuCanChiTiet.Sort(dgvPhieuCanChiTiet.Columns[1], ListSortDirection.Descending);
+                dgvPhieuCanChiTiet.Columns[1].HeaderText = "LẦN CÂN";
+                dgvPhieuCanChiTiet.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvPhieuCanChiTiet.Sort(dgvPhieuCanChiTiet.Columns[1], ListSortDirection.Descending);
 
-            dgvPhieuCanChiTiet.Columns[2].HeaderText = "TRỌNG LƯỢNG";
-            dgvPhieuCanChiTiet.Columns[2].Width = 160;
-            dgvPhieuCanChiTiet.Columns[2].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+                dgvPhieuCanChiTiet.Columns[2].HeaderText = "TRỌNG LƯỢNG";
+                dgvPhieuCanChiTiet.Columns[2].Width = 160;
+                dgvPhieuCanChiTiet.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-            dgvPhieuCanChiTiet.Columns[3].HeaderText = "LOT";
-            dgvPhieuCanChiTiet.Columns[3].Width = 160;
-            dgvPhieuCanChiTiet.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvPhieuCanChiTiet.Columns[3].Visible = true;
+                dgvPhieuCanChiTiet.Columns[3].HeaderText = "LOT";
+                dgvPhieuCanChiTiet.Columns[3].Width = 160;
+                dgvPhieuCanChiTiet.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvPhieuCanChiTiet.Columns[3].Visible = true;
 
-            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-            checkColumn.Name = "chkCancel";
-            checkColumn.HeaderText = "LOẠI BỎ";
-            checkColumn.Width = 68;
-            checkColumn.ReadOnly = false;
-            checkColumn.FillWeight = 10;
-            dgvPhieuCanChiTiet.Columns.Add(checkColumn);
+                dgvPhieuCanChiTiet.Columns[4].HeaderText = "LOẠI BỎ";
+                dgvPhieuCanChiTiet.Columns[4].Width = 68;
+                dgvPhieuCanChiTiet.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+                //DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+                //checkColumn.Name = "chkCancel";
+                //checkColumn.HeaderText = "LOẠI BỎ";
+                //checkColumn.Width = 68;
+                //checkColumn.ReadOnly = false;
+                //checkColumn.FillWeight = 10;
+                //dgvPhieuCanChiTiet.Columns.Add(checkColumn);
+                
+            }
+            catch(Exception ex) { }
 
             // if you want to hide Identity column
             //dgvPhieuCanChiTiet.Columns[0].Visible = false;
             txtLanCan.Text = lanCan.ToString();
+
         }
 
         private void cmbTenKH_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,25 +149,24 @@ namespace NDATA_MRP
             //add data
             String tl = txtTrongLuong.Text.Trim();
 
-            if (tl != "" && IsNumeric(tl))
+            if (IsNumeric(tl) && Convert.ToDouble(tl)>0)
             {
                 DataRow row = dataTable.NewRow();
                 row["phieu_can"] = txtSoPhieu.Text.Trim();
                 row["lan_can"] = txtLanCan.Text;
                 row["trong_luong"] = txtTrongLuong.Text;
                 row["lot"] = txtLot.Text.Trim();
+                row["status"] = false;
                 dataTable.Rows.Add(row);
                 lanCan = lanCan + 1;
                 txtLanCan.Text = lanCan.ToString();
-                dgvPhieuCanChiTiet.CurrentCell = dgvPhieuCanChiTiet.Rows[0].Cells[2];
-                //dgvPhieuCanChiTiet.Rows[0].Selected=true;
-                //dgvPhieuCanChiTiet.CurrentCell.Style.SelectionBackColor = Color.Yellow;
-                //dgvPhieuCanChiTiet.CurrentCell.Style.SelectionForeColor = Color.Black;
-                //update db
+                if(dgvPhieuCanChiTiet.Rows.Count>1)
+                    dgvPhieuCanChiTiet.CurrentCell = dgvPhieuCanChiTiet.Rows[0].Cells[2];
                 
+                //update db
                 bindingSource.EndEdit();
-                sqlDataAdapter.Update(dataTable);
-
+                //sqlDataAdapter.Update(dataTable);
+                this.updTongTL();
             }
             else
             {
@@ -153,7 +176,7 @@ namespace NDATA_MRP
         private String setSoPhieu()
         {
             NdataFunc f = new NdataFunc();
-            string lastID = f.GetLastID("PhieuCan","So_Phieu");
+            string lastID = f.getLasFieldValue("PhieuCan","So_Phieu");
             return f.NextID(lastID);
         }
         public static bool IsNumeric(string s)
@@ -179,6 +202,7 @@ namespace NDATA_MRP
             if (!f.checkRecordExit("Items", "item_no= N'" + cmbItem.SelectedValue + "'"))
             {
                 MessageBox.Show("Mã nguyên liệu không tồn tại. Bạn vui lòng chọn lại", "THÔNG BÁO");
+                return false;
             }
             //check MaKH
             if (!f.checkRecordExit("Suppliers","supplier_code= N'"+ cmbTenKH.SelectedValue +"'"))
@@ -189,6 +213,7 @@ namespace NDATA_MRP
                     frmKhachHang frmKH = new frmKhachHang();
                     frmKH.Show();
                 }
+                return false;
             }
             //check SO XE, NGUON GOC, KHO LUU
             string msg = "";
@@ -199,60 +224,129 @@ namespace NDATA_MRP
             {
                 msg = "Vui lòng nhập dữ liệu cho ô " + msg + " của phiếu cân.";
                 MessageBox.Show(msg, "THÔNG BÁO");
-            }
-            //Create phieu
-            try
-            {
-
-                //dsNdataMrp.PhieuCanDataTable tblPhieu = new dsNdataMrp.PhieuCanDataTable();
-                //dsNdataMrp.PhieuCanRow rowPhieu = tblPhieu.NewPhieuCanRow();
-                //rowPhieu.So_Phieu = txtSoPhieu.Text;
-                //rowPhieu.Ma_KH = cmbTenKH.SelectedValue.ToString();
-                //rowPhieu.Ten_KH = cmbTenKH.SelectedText;
-
-                ////tblPhieu.Rows.Add(rowPhieu);
-                //tblPhieu.AddPhieuCanRow(rowPhieu);
-                 
-
-                //string Ma_KH = cmbTenKH.SelectedValue.ToString();
-                //string Ten_KH = cmbTenKH.SelectedText;
-                //string Ma_NL = cmbItem.SelectedValue.ToString();
-                string sSQL = "INSERT INTO PhieuCan(Ma_KH,Ten_KH,Ma_NL,Ten_NL,Nguon,So_xe,Kho_luu, ngay, gio_den,Tong_TL_Can,Tru_TL,Tong_TL,Nguoi_can,Nguoi_duyet,mc_duyet,qc_duyet,status,qc_check,qc_note,createDate) " +
-                                           "VALUES () ";
-                //int rowAdd = f.executeQuery(sSQL);
-                f.write2Log(sSQL, "AddNew");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                f.write2Log(ex.Message, "Error(Ins)");
-
+                return false;
             }
             return true;
         }
 
         private void phieuCanBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            txtSoPhieu.Text = setSoPhieu();
+            if (checkDataInput())
+            {
+                txtSoPhieu.Text = setSoPhieu();
+                this.Validate();
+                this.phieuCanBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.dsNdataMrp);
+            }
+        }
+        private void updTongTL()
+        {
+               double TongTL = 0;
+                foreach (DataGridViewRow row in dgvPhieuCanChiTiet.Rows)
+                {
+
+                    if (Convert.ToBoolean(row.Cells[4].Value) == true)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                        row.DefaultCellStyle.Font = new Font(this.Font,FontStyle.Strikeout);
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                        row.DefaultCellStyle.Font = new Font(this.Font, FontStyle.Regular);
+                        TongTL += Convert.ToDouble(row.Cells[2].Value);
+                    }
+                }
+
+                txtTongKL.Text = TongTL.ToString();
+        }
+
+        private void txtSoPhieu_TextChanged(object sender, EventArgs e)
+        {
+            //SoPhieu is null: disable scales function
+            if(String.IsNullOrWhiteSpace(txtSoPhieu.Text))
+            {
+                panelRDetail.Enabled = false;
+                dgvPhieuCanChiTiet.Enabled = false;
+            }
+            else
+            {
+                //check status of PhieuCan
+                panelRDetail.Enabled = true;
+                dgvPhieuCanChiTiet.Enabled = true;
+                //Input PhieuCan
+                initPhieuCanChiTiet(txtSoPhieu.Text);
+            }
+
+        }
+
+        private void txtStatus_TextChanged(object sender, EventArgs e)
+        {
+            switch (txtStatus.Text)
+            {
+                case "10":
+                    lblStatus.Text = "Mới";
+                    break;
+                case "20":
+                    lblStatus.Text = "Đã Hủy";
+                    break;
+                case "90":
+                    lblStatus.Text = "Đã Cân Xong";
+                    break;
+                default:
+                    lblStatus.Text = "Đang cân";
+                    tlbSatus.Text = "Đang cân";
+                    break;
+
+            }
+        }
+
+        private void txtQCNote_Enter(object sender, EventArgs e)
+        {
+            if(txtQCNote.Text== "Đánh giá chất lượng")
+            {
+                txtQCNote.Text = "";
+            }
+        }
+
+        private void txtQCNote_Leave(object sender, EventArgs e)
+        {
+            if(txtQCNote.Text=="")
+            {
+                txtQCNote.Text = "Đánh giá chất lượng";
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //Save and Lock phieuCan
+            txtStatus.Text = "90";
+            this.updTongTL();
             this.Validate();
             this.phieuCanBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.dsNdataMrp);
-            
 
+            btnPrint.Enabled = true;
+            btnDel.Enabled = false;
+            btnSave.Enabled = false;
         }
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        private bool checkStatus()
         {
-
-        }
-        private void dgvPhieuCanChiTiet_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            int TongTL = 0;
-            for (int i = 0; i < dgvPhieuCanChiTiet.Rows.Count; ++i)
+            bool flag = false;
+            if(flag)
             {
-                TongTL += Convert.ToInt32(dgvPhieuCanChiTiet.Rows[i].Cells[2].Value);
+                btnPrint.Enabled = true;
+                btnDel.Enabled = false;
+                btnSave.Enabled = false;
             }
-            txtTongKL.Text = TongTL.ToString();
+            else
+            {
+                btnPrint.Enabled = false;
+                btnDel.Enabled = true;
+                btnSave.Enabled = true;
+            }
+
+            return flag;
         }
     }
 }

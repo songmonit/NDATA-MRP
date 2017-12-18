@@ -13,9 +13,12 @@ namespace NDATA_MRP {
     }
 }
 
-namespace NDATA_MRP.dsNdataMrpTableAdapters {
-    
-    
+namespace NDATA_MRP.dsNdataMrpTableAdapters
+{
+    partial class PhieuCanTableAdapter
+    {
+    }
+
     public partial class NhanVienTableAdapter {
     }
 }
